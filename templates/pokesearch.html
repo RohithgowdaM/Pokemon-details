@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon search</title>
+    <link rel="stylesheet" href={% static 'css/page2.css' %}>
+    <link rel="shortcut icon" type="image/png" href="{%static 'img\logo.png'%}"/>
+
+</head>
+
+
+<body>
+    <div id="image">
+        
+    </div>
+    <div id="image1">
+ 
+    <div id="form">
+
+        <p><b>Type : {{type}}</b></p>
+        <form action="{% url 'pokemon:pokefeaname' %}" method="post">
+            {% csrf_token %}
+            <select name="pokemon-name" id="pokefea">
+                {% for x in list %}
+                {% comment %} <button type="submit" value="choice{{ x }}">{{x}}</button> {% endcomment %}
+                <option value="{{x}}">{{x}}</option>
+                {% endfor %}
+                <br>
+            </select>
+            <input type="submit" onclick="playAudio"></input>
+        </form>
+    <audio loop="true" autoplay="true" id="audio">
+        <source src="/static/music/Pokemon_Theme_Song.mp3" type="audio/mp3">
+    </audio>
+  <input type="image" name="submit" onclick="volume()" src="/static/img/unmute.png" border="0" alt="Submit" id="volimg" style="width: 50px;height: 50px" /> 
+    </div>
+</div>
+
+<script>
+    let aud = document.getElementById("audio");
+
+    var count = 0;
+
+    var x = document.getElementById("audio");
+
+    function playAudio() {
+        x.play();
+    }
+
+
+    function volume() {
+        if (count % 2 == 0) {
+            Mute();
+            count = count + 1;
+        }
+        else {
+            Unmute();
+            count = count + 1;
+        }
+    }
+    function Mute() {
+        aud.volume = 0;
+        document.getElementById("volimg").src = "/static/img/mute.png"
+    }
+
+    function Unmute() {
+        aud.volume = 1.0;
+        document.getElementById("volimg").src = "/static/img/unmute.png"
+
+    } 
+</script>
+
+</body>
+
+</html>

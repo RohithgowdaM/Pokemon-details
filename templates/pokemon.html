@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon details</title>
+    <link rel="stylesheet" href={% static 'css/Page3.css' %}>
+    <link rel="shortcut icon" type="image/png" href="{%static 'img\logo.png'%}"/>
+</head>
+
+<body onload="changeStyle()">
+    {% if value == 0 %}
+    <h1>Pokemon doesn't exist try again</h1>
+    <form action="{% url 'pokemon:pokefeaname' %}" method="post">
+        {% csrf_token %}
+        <h2>Search pokemon by name</h2>
+        <input type="text" name="pokemon-name" id="pname" required>
+        <input type="submit"></input>
+    </form>
+    {% else %}
+    <div class="pokeman-card-container" id="card-cont">
+        <div class="pokemon-card">
+            <div class="background" id="back">
+                <img src="/static/img/download_1.png" class="image">
+            </div>
+            <div class="content" id="content">
+                <h1 class="pokemon-name"><b>{{Name}}</b></h1>
+                <span class="pokemon-type" id="type1" value="xx">{{Type1}}</span>
+                <div class="pokemon-stats">
+                    <div><p >Type 1:{{Type1}}</p></div>
+                    <div><p>Type 2:{{Type2}}</p></div>
+                    <div><p>Total:{{Total}}</p></div>
+                    <div><p>HP :{{HP}}</p></div>
+                    <div><p>Attack :{{attack}}</p></div>
+                    <div><p>Defence :{{defence}}</p></div>
+                    <div><p>Special Attack :{{S_A}}</p></div>
+                    <div><p>Special Defence :{{S_D}}</p></div>
+                    <div><p>Speed :{{speed}}</p></div>
+                    <div><p>Generation :{{generation}}</p></div>
+                    <div><p>Legendary :{{legendary}}</p></div>
+                </div>
+            </div>
+
+        </div>
+
+    <form action="{% url 'pokemon:pokefeaname' %}" method="post">
+        {% csrf_token %}
+        <h2 style="text-align: center;">Search other pokemon by name</h2>
+        <input type="text" name="pokemon-name" id="pname" required style="margin-left:20%;border-radius:2px;">
+        <input type="submit"></input>
+    </form>
+
+</div>
+
+
+    {% comment %} <h1>Name:{{Name}}</h1>
+ {% endcomment %}
+    {% endif %}
+
+    <audio loop="true" autoplay="true" id="auto">
+        <source src="/static/music/Pokemon_Theme_Song.mp3" type="audio/mp3">
+    </audio>
+<script>
+    Window.onload=function(){
+        docuement.getElementById("auto").play();
+        changeStyle();
+    }
+
+    function changeStyle(){
+        var colorOne="#f5e593";
+        var colorTwo="#fff2af";
+        const type1=document.getElementById('type1').innerHTML;
+        if(type1==="Electric"){
+        var dom = document.getElementById('content');
+        dom.style.backgroundImage = 'linear-gradient('
+                + "to right" + ', ' + "#f5e593" + ', ' + "#fff2af" + ')';
+        var dom = document.getElementById('card-cont');
+        dom.style.backgroundImage = 'linear-gradient('
+                + "to right" + ', ' + "#fad61f" + ', ' +  "#fad61f" + ')';
+        var dom = document.getElementById('back');
+        dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#6a5b0e" + ', ' +  "#504921" + ')';  
+        }
+        else if(type1==="Bug"){
+            var dom = document.getElementById('content');
+            dom.style.backgroundImage = 'linear-gradient('
+                    + "to right" + ', ' + "#b9f593" + ', ' + "#b9f594" + ')';
+             var dom = document.getElementById('card-cont');
+            dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#439f10" + ', ' +  "#439f11" + ')';
+            var dom = document.getElementById('back');
+            dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#2f6a0e" + ', ' +  "#2f6a0f" + ')';                     
+                        }
+        else if(type1==="Dark"){
+            var dom = document.getElementById('content');
+            dom.style.backgroundImage = 'linear-gradient('
+                    + "to right" + ', ' + "#5e395e" + ', ' +  "#5e395f" + ')';                    
+                
+            var dom = document.getElementById('card-cont');
+           dom.style.backgroundImage = 'linear-gradient('
+                    + "to right" + ', ' + "#630a7c" + ', ' +  "#630a7d" + ')';
+             var dom = document.getElementById('back');
+            dom.style.backgroundImage = 'linear-gradient('                       
+                     + "to right" + ', ' + "#5f0e6a" + ', ' +  "#5f0e6b" + ')';                     
+                }
+            else if(type1==="Dragon"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#93f5f5" + ', ' + "#93f5f5" + ')';
+                 var dom = document.getElementById('card-cont');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#109b9f" + ', ' +  "#109b9f" + ')';
+                var dom = document.getElementById('back');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#0e676a" + ', ' +  "#0e676a" + ')';                     
+                            }
+            else if(type1==="Fairy"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#ffc1cc" + ', ' + "#ffc1cc" + ')';
+                 var dom = document.getElementById('card-cont');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#fe8cac" + ', ' +  "#fe8cac" + ')';
+                var dom = document.getElementById('back');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#f32eb3" + ', ' +  "#f32eb3" + ')';                     
+                            }
+            else if(type1==="Fighting"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#fffdd1" + ', ' + "#fffdd1" + ')';
+                 var dom = document.getElementById('card-cont');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#f6e8b1" + ', ' +  "#f6e8b1" + ')';
+                var dom = document.getElementById('back');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#d4caa3" + ', ' +  "#d4caa3" + ')';                     
+                            }
+            else if(type1==="Flying"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#eefcff" + ', ' + "#eefcff" + ')';
+                 var dom = document.getElementById('card-cont');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#ccf5ff" + ', ' +  "#ccf5ff" + ')';
+                var dom = document.getElementById('back');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#aaeeff" + ', ' +  "#aaeeff" + ')';                     
+                            }
+             else if(type1==="Fire"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#fcce8e" + ', ' + "#fcce8e" + ')';
+                 var dom = document.getElementById('card-cont');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#ffb224" + ', ' +  "#ffb226" + ')';
+                var dom = document.getElementById('back');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#f58216" + ', ' +  "#f58217" + ')';                     
+                            }
+            else if(type1==="Grass"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#93f5a1" + ', ' + "#93f5a2" + ')';
+                 var dom = document.getElementById('card-cont');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#109f59" + ', ' +  "#109f5a" + ')';
+                var dom = document.getElementById('back');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#0e6a59" + ', ' +  "#0e6a5a" + ')';                     
+                            }
+                
+            else if(type1==="Ghost"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#f593f5" + ', ' +  "#f593f5" + ')';                    
+                    
+                var dom = document.getElementById('card-cont');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#5d109f" + ', ' +  "#5d10a0" + ')';
+                var dom = document.getElementById('back');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#5f0e6a" + ', ' +  "#5f0e6b" + ')';                     
+                    }
+             else if(type1==="Ground"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#8b6c5c" + ', ' + "#8b6c5c" + ')';
+                 var dom = document.getElementById('card-cont');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#6a4a3a" + ', ' +  "#6a4a3a" + ')';
+                var dom = document.getElementById('back');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#4c3228" + ', ' +  "#4c3228" + ')';                     
+                            }
+            else if(type1==="Ice"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#88e7ff" + ', ' + "#88e7ff" + ')';
+                 var dom = document.getElementById('card-cont');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#4cd5f7" + ', ' +  "#4cd5f7" + ')';
+                var dom = document.getElementById('back');
+                dom.style.backgroundImage = 'linear-gradient('
+                            + "to right" + ', ' + "#00c8fa" + ', ' +  "#00c8fa" + ')';                     
+                            }
+             else if(type1==="Normal"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + colorOne + ', ' + colorTwo + ')';
+                }
+            else if(type1==="Poison"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + colorOne + ', ' + colorTwo + ')';
+                }
+            else if(type1==="Psychic"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + colorOne + ', ' + colorTwo + ')';
+                }
+            else if(type1==="Rock"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#989898" + ', ' +  "#989898" + ')';                    
+                    
+                var dom = document.getElementById('card-cont');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#767676" + ', ' +  "#767676" + ')';
+                var dom = document.getElementById('back');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#555555" + ', ' +  "#555555" + ')';                     
+                    }
+            else if(type1==="Steel"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#b0c4de" + ', ' +  "#b0c4de" + ')';                    
+                    
+                var dom = document.getElementById('card-cont');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#9eb0c8" + ', ' +  "#9eb0c8" + ')';
+                var dom = document.getElementById('back');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#8d9db2" + ', ' +  "#8d9db2" + ')';                     
+                    }
+            else if(type1==="Water"){
+                var dom = document.getElementById('content');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#689fc9e3" + ', ' +  "#689fc9e3" + ')';                    
+                    
+                var dom = document.getElementById('card-cont');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#10159f" + ', ' +  "#1015af" + ')';
+                var dom = document.getElementById('back');
+                dom.style.backgroundImage = 'linear-gradient('
+                        + "to right" + ', ' + "#0e316a" + ', ' +  "#0e316b" + ')';                     
+                    }
+        else{
+            console.log("Hello world")
+        }
+    }
+    
+</script>
+</body>
+
+</html>

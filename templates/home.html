@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href={% static 'css/home.css' %}>
+    <link rel="shortcut icon" type="image/png" href="{%static 'img\logo.png'%}"/>
+
+</head>
+
+
+<body>
+
+    <div id="outer">
+        <div id="image">
+        </div>
+        <div id="inner">
+            <form action="{% url 'pokemon:pokefeaname' %}" method="post">
+                {% csrf_token %}
+                <p><b>SEARCH BY POKEMON NAME</b></p>
+                <input type="text" name="pokemon-name" id="pname" required placeholder="Pokemon">
+                <div id="button">
+                    <input type="submit"></input>
+                </div>
+            </form>
+            <form action="{% url 'pokemon:pokefea' %}" method="post">
+                {% csrf_token %}
+                <p><b>SEARCH BY POKEMON TYPE</b></p>
+                <select name="pokfea">
+                    <option value="bug">BUG</option>
+                    <option value="dark">DARK</option>
+                    <option value="dragon">DRAGON</option>
+                    <option value="electric">ELECTRIC</option>
+                    <option value="fairy">FAIRY</option>
+                    <option value="fighting">FIGHTING</option>
+                    <option value="flying">FLYING</option>
+                    <option value="fire">FIRE</option>
+                    <option value="grass">GRASS</option>
+                    <option value="ghost">GHOST</option>
+                    <option value="ground">GROUND</option>
+                    <option value="ice">ICE</option>
+                    <option value="normal">NORMAL</option>
+                    <option value="posion">POSION</option>
+                    <option value="psychic">PSYCHIC</option>
+                    <option value="rock">ROCK</option>
+                    <option value="steel">STEEL</option>
+                    <option value="water">WATER</option>
+                </select><br>
+                <div id="button">
+                    <input type="submit"></input>
+                </div>
+            </form>
+            {% comment %} <form action="{% url 'pokemon:upload' %}" method="post">
+                {% csrf_token %}
+                <input type="submit"></input>
+            </form> {% endcomment %}
+        </div>
+    </div>
+    <audio loop="true" autoplay="true" id="auto">
+        <source src="/static/music/Pokemon_Theme_Song.mp3" type="audio/mp3">
+    </audio>
+</body>
+
+<script>
+    window.onload = function () {
+        docuement.getElementById("auto").play();
+    }
+</script>
+
+</html>
