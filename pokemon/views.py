@@ -48,7 +48,7 @@ def pokefea(request):
 
 def upload(request):
     conn = sqlite3.connect('db.sqlite3')
-    df = pd.read_excel(r"C:\Users\Rohith gowda M\Downloads\test.xlsx")
+    df = pd.read_excel(r"pokemon.csv")
     df.to_sql(con=conn, name='pokemon', if_exists='append')
     conn.commit()
     conn.close()
