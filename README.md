@@ -6,7 +6,9 @@ This is a django project on pokemon details where u can search about pokemons an
 2. Python should be installed. Install necessary libraries like django, pandas, sqlite3 etc.
 3. After cloning open the terminal and open the folder and run the following commands during initializations
 <br>
-```
+
+### Command
+```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
